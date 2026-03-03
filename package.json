@@ -1,0 +1,36 @@
+{
+  "name": "changelog-generator",
+  "version": "1.0.0",
+  "description": "Generate CHANGELOG.md from git history. Conventional commits. Zero dependencies.",
+  "type": "module",
+  "bin": {
+    "changelog-generator": "./index.js",
+    "chlog": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "developer-tools",
+    "cli",
+    "nodejs",
+    "zero-dependencies",
+    "changelog",
+    "git",
+    "conventional-commits",
+    "semver"
+  ],
+  "author": "NickCirv",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NickCirv/changelog-generator.git"
+  },
+  "homepage": "https://github.com/NickCirv/changelog-generator",
+  "bugs": {
+    "url": "https://github.com/NickCirv/changelog-generator/issues"
+  }
+}
