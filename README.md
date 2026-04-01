@@ -1,3 +1,5 @@
+![Banner](banner.svg)
+
 # changelog-generator
 
 > Generate CHANGELOG.md from git history. Conventional commits. Zero dependencies.
