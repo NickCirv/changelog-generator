@@ -1,115 +1,63 @@
-![Banner](banner.svg)
+<div align="center">
 
 # changelog-generator
 
-> Generate CHANGELOG.md from git history. Conventional commits. Zero dependencies.
+**Turn git history into a formatted CHANGELOG in one command — conventional commits, zero dependencies.**
 
-```
-✨ Features
-  - feat(auth): add JWT refresh tokens (`abc1234`) by @dev
+[![License: MIT](https://img.shields.io/badge/License-MIT-0B0A09?style=flat-square&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-0B0A09?style=flat-square)](package.json)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-0B0A09?style=flat-square&logo=node.js&logoColor=white)](package.json)
 
-🐛 Bug Fixes
-  - fix: handle null response from API (`def5678`) by @dev
-
-💥 Breaking Changes
-  - feat!: drop Node 16 support (`ghi9012`) by @dev
-```
+</div>
 
 ## Install
 
 ```bash
-# Run without installing
-npx changelog-generator
-
-# Install globally
-npm install -g changelog-generator
+npx github:NickCirv/changelog-generator
 ```
 
-## Quick Start
+## Usage
 
 ```bash
 # Print changelog to stdout
-chlog
+npx github:NickCirv/changelog-generator
 
 # Write to file
-chlog --output CHANGELOG.md
+npx github:NickCirv/changelog-generator --output CHANGELOG.md
 
-# Only commits since a tag
-chlog --since v1.0.0 --output CHANGELOG.md
+# Commits since a tag
+npx github:NickCirv/changelog-generator --since v1.0.0 --output CHANGELOG.md
 
-# Specific range
-chlog --from v1.0.0 --to v2.0.0
+# Compare two tags
+npx github:NickCirv/changelog-generator --from v1.0.0 --to v2.0.0
 
-# Label unreleased commits with next version
-chlog --next-version 2.0.0 --output CHANGELOG.md
+# Label unreleased commits
+npx github:NickCirv/changelog-generator --next-version 2.0.0 --output CHANGELOG.md
 
 # JSON output
-chlog --format json
+npx github:NickCirv/changelog-generator --format json
 
-# Include non-conventional commits too
-chlog --include-all
+# Include non-conventional commits
+npx github:NickCirv/changelog-generator --include-all
 ```
 
-## Options
+| Flag | Description |
+|------|-------------|
+| `--since <tag>` | Commits since a tag |
+| `--from <tag>` | Start of range (use with `--to`) |
+| `--to <tag>` | End of range |
+| `--output <file>` | Write to file instead of stdout |
+| `--format <fmt>` | `markdown` (default) or `json` |
+| `--repo-url <url>` | GitHub URL for commit/PR links (auto-detected) |
+| `--next-version <ver>` | Label for unreleased commits |
+| `--include-all` | Include non-conventional commits |
+| `--include-merges` | Include merge commits |
+| `-h, --help` | Show help |
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--since <tag>` | Commits since a tag | — |
-| `--from <tag>` | Start of range | — |
-| `--to <tag>` | End of range (use with `--from`) | — |
-| `--output <file>` | Write to file instead of stdout | stdout |
-| `--format <fmt>` | Output format: `markdown` or `json` | `markdown` |
-| `--repo-url <url>` | GitHub URL for commit/PR links | auto-detected |
-| `--next-version <ver>` | Label for unreleased commits | `Unreleased` |
-| `--include-all` | Include non-conventional commits | false |
-| `--include-merges` | Include merge commits | false |
-| `-h, --help` | Show help | — |
+## What it does
 
-## Conventional Commit Types
-
-| Prefix | Section |
-|--------|---------|
-| `feat` | ✨ Features |
-| `fix` | 🐛 Bug Fixes |
-| `perf` | ⚡ Performance |
-| `refactor` | ♻️ Refactoring |
-| `docs` | 📝 Documentation |
-| `test` | 🧪 Tests |
-| `chore` | 🔧 Maintenance |
-| `ci` | 👷 CI/CD |
-| `build` | 📦 Build |
-| `revert` | ⏪ Reverts |
-| `BREAKING CHANGE` / `!` | 💥 Breaking Changes (always first) |
-
-## Output Format
-
-Each entry follows the pattern:
-
-```
-- feat(scope): description (#PR) (`abc1234`) by @author
-```
-
-Breaking changes are highlighted with `**BREAKING:**` and always appear first.
-
-## Auto-Detection
-
-- GitHub remote URL is auto-detected from `git remote get-url origin` (both SSH and HTTPS formats)
-- Semver tags are discovered automatically and used to group commits by version
-- Merge commits are excluded by default (`--include-merges` to change)
-
-## Security
-
-- Uses `execFileSync` — never `exec` (no shell injection risk)
-- No network calls
-- No file system writes unless `--output` is specified
-- All sensitive values via `process.env` — nothing hardcoded
-
-## Requirements
-
-- Node.js 18+
-- Git installed and on PATH
-- Must be run inside a git repository
+Reads your git log, groups commits by semver tag, and renders them into sectioned Markdown (or JSON) grouped by conventional commit type — `feat`, `fix`, `perf`, `refactor`, `docs`, and more. Breaking changes always appear first. GitHub remote is auto-detected so commit and PR links are generated automatically. Uses `execFileSync` throughout — no shell injection risk, no network calls.
 
 ---
 
-Built with Node.js · Zero dependencies · MIT License
+<sub>Zero dependencies · Node >=18 · MIT · by <a href="https://github.com/NickCirv">NickCirv</a></sub>
